@@ -1,2 +1,0 @@
-# FitSync
-FitSync Capstone
