@@ -1,20 +1,32 @@
 const express = require('express');
 const cors = require('cors');
-const app = express();
+const mongoose = require('mongoose')
 
-//run on port 3000
-const port = process.env.PORT || 3000;
+require('dotenv').config()
+
+const app = express();
+const hostname = "localhost";
+const port = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(express.json());
 
-//routes
-const exercises = require('./routes/exercises');
-const users = require('./routes/users');
+//connecting to database
+const uri = process.env.ATLAS_URI
+mongoose.connect(uri) //, {useNewUrlParser: true, useCreateIndex: true}
+const connection = mongoose.connection;
 
-app.use('/exercises', exercises);
-app.use('/users', users);
+//once connection open, log to console
+connection.once('open', () => {
+    console.log("FitSync database connection established successfully")
+})
 
-app.listen(port, () => {
+const exercisesRouter = require('./routes/exercises')
+const usersRouter = require('./routes/users')
+
+app.use('/exercises', exercisesRouter)
+app.use('/users', usersRouter)
+
+app.listen(port, hostname, () => {
     console.log(`Server is running on port: ${port}`);
 });

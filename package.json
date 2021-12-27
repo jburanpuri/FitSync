@@ -15,5 +15,12 @@
   "bugs": {
     "url": "https://github.com/jburanpuri/FitSync/issues"
   },
-  "homepage": "https://github.com/jburanpuri/FitSync#readme"
+  "homepage": "https://github.com/jburanpuri/FitSync#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.2",
+    "mongodb": "^4.2.2",
+    "mongoose": "^6.1.3"
+  }
 }
