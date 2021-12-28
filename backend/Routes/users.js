@@ -26,7 +26,7 @@ router.route('/signup').post((req, res) => {
         email: email
     })
     .then(result => {
-        if(result == null) {
+        if(result == null) { //first time user
             let newUser;
             if(type == 'client') {
                 newUser = new user.Client({email, fname, lname})
@@ -38,7 +38,7 @@ router.route('/signup').post((req, res) => {
             .then(() => res.json('User added!'))
             .catch(err => res.status(400).json('Error: ' + err))
         }
-        else res.send("Email already used")
+        else res.send("Email already used") //if email already taken
     })
     .catch(error => console.error(error))
 })
