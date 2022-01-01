@@ -1,18 +1,22 @@
 const mongoose = require('mongoose');
 
-const exerciseSchema = new mongoose.Schema({
-    exerciseName: {
+const UserSchema = new mongoose.Schema({
+    name: {
         type: String,
         required: true
     },
-    description: {
+    email: {
         type: String,
         required: true
     },
-    tips: {
+    password: {
         type: String,
+        required: true
+    },
+    trainer: {
+        type: Boolean,
         required: true,
         default: false
     }
 });
-module.exports = exercise = mongoose.model('exercise', exerciseSchema);
+module.exports = User = mongoose.model('user', UserSchema);
