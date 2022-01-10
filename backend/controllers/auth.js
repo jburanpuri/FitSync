@@ -11,13 +11,13 @@ exports.register = async (req, res, next) => {
             password,
         });
         res.status(201).json({
-            sucess: true,
+            success: true,
             user,
         })
     }
     catch (error) {
         res.status(500).json({
-            success=false,
+            success: false,
             error: error.message,
         })
     }
