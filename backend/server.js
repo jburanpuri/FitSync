@@ -9,6 +9,11 @@ const port = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
+app.post('/routes/register', (req, res) => {
+    console.log(req.body)
+    res.json({ status: ok })
+})
+
 //routes
 const exercises = require('./routes/exercises');
 const users = require('./routes/users');
