@@ -1,12 +1,12 @@
 import { Navigate, Route } from "react-router-dom";
 
-const PrivateRoute = ({ component: Component, ...rest }) => {
+const PrivateRoute = ({ element: element, ...rest }) => {
     return (
         <Route
             {...rest}
             render={(props) =>
                 localStorage.getItem("authToken") ? (
-                    <Component {...props} />
+                    <element {...props} />
                 ) : (
                     <Navigate to="/login" />
                 )

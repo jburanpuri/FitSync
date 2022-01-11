@@ -50,13 +50,13 @@ UserSchema.methods.getSignedJwtToken = function () {
 UserSchema.methods.getResetPasswordToken = function () {
     const resetToken = crypto.randomBytes(20).toString("hex");
 
-    //Hash token
+    // Hash token (private key) and save to database
     this.resetPasswordToken = crypto
         .createHash("sha256")
         .update(resetToken)
         .digest("hex");
 
-    //Token expire date
+    // Set token expire date
     this.resetPasswordExpire = Date.now() + 10 * (60 * 1000); // Ten Minutes
 
     return resetToken;
