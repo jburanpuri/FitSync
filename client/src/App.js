@@ -1,58 +1,37 @@
-import { useState } from 'react'
-import './App.css'
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-function App() {
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+// Routing
+import PrivateRoute from "./components/routing/PrivateRoute";
 
-  async function registerUser(event) {
-    event.preventDefault()
+// Screens
+import PrivateScreen from "./components/screens/PrivateScreen";
+import LoginScreen from "./components/screens/LoginScreen";
+import RegisterScreen from "./components/screens/RegisterScreen";
+import ForgotPasswordScreen from "./components/screens/ForgotPasswordScreen";
+import ResetPasswordScreen from "./components/screens/ResetPasswordScreen";
 
-    const response = await fetch('http://localhost:1337//api/register', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        name,
-        email,
-        password,
-      }),
-    })
-  }
-
-  //const data = await response.json()
-
-
+const App = () => {
   return (
-    <div>
-      <h1>Register</h1>
-      <form onSubmit={registerUser}>
-        <input
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          type="text"
-          placeholder="Name"
-        />
-        <br />
-        <input
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          type="email"
-          placeholder="Email"
-        />
-        <br />
-        <input
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          type="password"
-          placeholder="Password"
-        />
-        <br />
-        <input type="submit" value="Register" />
-      </form>
-    </div>
-  )
-}
+    <Router>
+      <div className="app">
+        <Switch>
+          <PrivateRoute exact path="/" component={PrivateScreen} />
+          <Route exact path="/login" component={LoginScreen} />
+          <Route exact path="/register" component={RegisterScreen} />
+          <Route
+            exact
+            path="/forgotpassword"
+            component={ForgotPasswordScreen}
+          />
+          <Route
+            exact
+            path="/passwordreset/:resetToken"
+            component={ResetPasswordScreen}
+          />
+        </Switch>
+      </div>
+    </Router>
+  );
+};
+
 export default App;
