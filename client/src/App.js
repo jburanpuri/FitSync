@@ -1,7 +1,7 @@
 import { BrowserRouter as BrowserRouter, Routes, Route } from "react-router-dom";
 
 // Routing
-import PrivateRoute from "./components/routing/PrivateRoute";
+//import PrivateRoute from "./components/routing/PrivateRoute";
 
 // Screens
 import PrivateScreen from "./components/screens/PrivateScreen/PrivateScreen";
