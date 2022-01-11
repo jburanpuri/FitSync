@@ -1,58 +1,36 @@
-import { useState } from 'react'
-import './App.css'
+import { BrowserRouter as BrowserRouter, Routes, Route } from "react-router-dom";
+// Routing
+import PrivateRoute from "./components/routing/PrivateRoute";
 
-function App() {
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+// Screens
+import PrivateScreen from "./components/screens/PrivateScreen/PrivateScreen";
+import LoginScreen from "./components/screens/LoginScreen/LoginScreen";
+import RegisterScreen from "./components/screens/RegisterScreen/RegisterScreen";
+import ForgotPasswordScreen from "./components/screens/ForgotPasswordScreen/ForgotPasswordScreen";
+import ResetPasswordScreen from "./components/screens/ResetPasswordScreen/ResetPasswordScreen";
 
-  async function registerUser(event) {
-    event.preventDefault()
-
-    const response = await fetch('http://localhost:1337//api/register', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        name,
-        email,
-        password,
-      }),
-    })
-  }
-
-  //const data = await response.json()
-
-
+const App = () => {
   return (
-    <div>
-      <h1>Register</h1>
-      <form onSubmit={registerUser}>
-        <input
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          type="text"
-          placeholder="Name"
-        />
-        <br />
-        <input
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          type="email"
-          placeholder="Email"
-        />
-        <br />
-        <input
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          type="password"
-          placeholder="Password"
-        />
-        <br />
-        <input type="submit" value="Register" />
-      </form>
-    </div>
-  )
-}
+    <BrowserRouter>
+      <div className="app">
+        <Routes>
+          <Route PrivateRoute path="/homepage" element={<PrivateScreen />} exact />
+          <Route path="/login" element={<LoginScreen />} exact />
+          <Route path="/register" element={<RegisterScreen />} exact />
+          <Route
+            exact
+            path="/forgotpassword"
+            element={<ForgotPasswordScreen />}
+          />
+          <Route
+            exact
+            path="/passwordreset/:resetToken"
+            element={<ResetPasswordScreen />}
+          />
+        </Routes>
+      </div>
+    </BrowserRouter>
+  );
+};
+
 export default App;
