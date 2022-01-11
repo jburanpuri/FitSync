@@ -3,6 +3,7 @@ require("dotenv").config({ path: "./config.env" });
 const connectDB = require('./config/db');
 const express = require('express');
 const cors = require('cors');
+const mongoose = require('mongoose');
 const app = express();
 
 connectDB();
