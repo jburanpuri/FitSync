@@ -8,6 +8,9 @@ import LoginScreen from "./components/screens/LoginScreen/LoginScreen";
 import RegisterScreen from "./components/screens/RegisterScreen/RegisterScreen";
 import ForgotPasswordScreen from "./components/screens/ForgotPasswordScreen/ForgotPasswordScreen";
 import ResetPasswordScreen from "./components/screens/ResetPasswordScreen/ResetPasswordScreen";
+import Navbar from "./components/Navbar.component";
+import Exercisedatabase from './components/exercisedatabase.component';
+import Createworkout from './components/createworkout.component';
 
 const App = () => {
   return (
@@ -27,6 +30,8 @@ const App = () => {
             path="/passwordreset/:resetToken"
             element={<ResetPasswordScreen />}
           />
+          <Route path="/exercisedatabase" element={ <Exercisedatabase/>}/>
+          <Route path="/createworkout" element={ <Createworkout/> }/>
         </Routes>
       </div>
     </BrowserRouter>

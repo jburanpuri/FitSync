@@ -12,8 +12,12 @@ app.use(cors());
 app.use(express.json());
 
 const exercisesRouter = require('./routes/exercises')
+const workoutsRouter = require('./routes/workouts')
 //routes
+
 app.use('/exercises', exercisesRouter)
+app.use('/workouts', workoutsRouter)
+
 app.get("/", (req, res, next) => {
     res.send("Api running");
 });
