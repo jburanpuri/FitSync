@@ -32,6 +32,7 @@ function Createworkoutform({formData = {
         reValidateMode:"all",
         defaultValues: formData,
     });
+
     
     const [exerciseIDs, setExerciseIDs] = useState(Object.keys(formData.exercises))
 
@@ -41,14 +42,28 @@ function Createworkoutform({formData = {
             exercises:Object.values(data.exercises),
             
         }); 
-        const newWorkout = {
-            workoutName: data.workoutName,
-            exercises: data.exercises
-
+        let databody = {
+            "workoutName": data.workoutName,
+            "exercises": data.exercises
         }
-        axios.post('http://127.0.0.1:5000/workouts/addWorkout', newWorkout)
-        .then(res => console.log(res.data));
-    }
+        // const newWorkout = {
+        //     workoutName: data.workoutName,
+        //     exercises: data.exercises
+
+        // }
+        fetch('http://127.0.0.1:5000/workouts/addWorkout', {
+            method: 'POST',
+            body: JSON.stringify(databody),
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        })
+        .then(res => res.json())
+        .then(data => console.log(data));
+}
+        // axios.post('http://127.0.0.1:5000/workouts/addWorkout/', newWorkout)
+        // .then(res => console.log(res.data));
+    
 
     const onAddExercise = () => {
         setExerciseIDs([...exerciseIDs, exerciseIDs.length++]);
@@ -59,7 +74,7 @@ function Createworkoutform({formData = {
     }
 
     return(
-            <div><p>yaayyyy</p>  
+            <div>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <InputGroup className="mb-2">
                     <InputGroupAddon type="prepend">
@@ -100,5 +115,6 @@ function Createworkoutform({formData = {
            </div>  
     );
 }
+
 
 export default Createworkoutform;

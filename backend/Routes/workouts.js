@@ -12,6 +12,8 @@ router.route('/').get((req, res) => {
 router.route('/addWorkout').post((req, res) => {
     const workoutName = req.body.workoutName;
     const exercises = req.body.exercises;
+    console.log(workoutName)
+    console.log(exercises)
     Workout.findOne({
         workoutName: workoutName
     })
