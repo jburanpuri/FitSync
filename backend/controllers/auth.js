@@ -1,13 +1,19 @@
 const crypto = require("crypto");
 const ErrorResponse = require("../utils/errorResponse");
-const User = require("../models/users");
-const sendEmail = require("../utils/sendEmail.js");
+const User = require("../models/User");
+const sendEmail = require("../utils/sendEmail");
 
-// Login user
+exports.logout = async (req, res) => {
+    console.log('LoggedOut');
+    res.localStorage.clear(); 
+    res.status(200).send('User Logout');
+}
+
+// @desc    Login user
 exports.login = async (req, res, next) => {
     const { email, password } = req.body;
 
-    //check if email was provided
+    // Check if email and password is provided
     if (!email || !password) {
         return next(new ErrorResponse("Please provide an email and password", 400));
     }
@@ -20,7 +26,7 @@ exports.login = async (req, res, next) => {
             return next(new ErrorResponse("Invalid credentials", 401));
         }
 
-        // Check password
+        // Check that password match
         const isMatch = await user.matchPassword(password);
 
         if (!isMatch) {
@@ -33,7 +39,7 @@ exports.login = async (req, res, next) => {
     }
 };
 
-//Register user
+// @desc    Register user
 exports.register = async (req, res, next) => {
     const { username, email, password } = req.body;
 
@@ -50,10 +56,9 @@ exports.register = async (req, res, next) => {
     }
 };
 
-//Forgot pass initialization
+// @desc    Forgot Password Initialization
 exports.forgotPassword = async (req, res, next) => {
-
-    // send email if email exists
+    // Send Email to email provided but first check if user exists
     const { email } = req.body;
 
     try {
@@ -63,15 +68,15 @@ exports.forgotPassword = async (req, res, next) => {
             return next(new ErrorResponse("No email could not be sent", 404));
         }
 
-        //reset token
+        // Reset Token Gen and add to database hashed (private) version of token
         const resetToken = user.getResetPasswordToken();
 
         await user.save();
 
-        //create a reset token url
+        // Create reset url to email to provided email
         const resetUrl = `http://localhost:3000/passwordreset/${resetToken}`;
 
-        //Email contents
+        // HTML Message
         const message = `
       <h1>You have requested a password reset</h1>
       <p>Please make a put request to the following link:</p>
@@ -101,9 +106,9 @@ exports.forgotPassword = async (req, res, next) => {
     }
 };
 
-//Reset the password
+// @desc    Reset User Password
 exports.resetPassword = async (req, res, next) => {
-    //compare token
+    // Compare token in URL params to hashed token
     const resetPasswordToken = crypto
         .createHash("sha256")
         .update(req.params.resetToken)
@@ -139,3 +144,4 @@ const sendToken = (user, statusCode, res) => {
     const token = user.getSignedJwtToken();
     res.status(statusCode).json({ sucess: true, token });
 };
+
