@@ -15,8 +15,8 @@ const App = () => {
     <Router>
       <div className="app">
         <Routes>
-          <Route path="/homepage" element={<PrivateScreen />} />
-          <Route path="/logout" element={<LoginScreen />} />
+          <Route exact path="/" element={<PrivateScreen />} />
+          <Route exact path="/logout" element={<LoginScreen />} />
           <Route exact path="/login" element={<LoginScreen />} />
           <Route exact path="/register" element={<RegisterScreen />} />
           <Route
