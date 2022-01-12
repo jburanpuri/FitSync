@@ -12,8 +12,8 @@ import ResetPasswordScreen from "./components/screens/ResetPasswordScreen/ResetP
 import LogoutScreen from "./components/screens/LogoutScreen/LogoutScreen";
 import HomeScreen from "./components/screens/HomeScreen/HomeScreen";
 import Exercisedatabase from './components/exercisedatabase.component';
-import Createworkout from './components/createworkout.component';
-
+//import Createworkout from './components/createworkout.component';
+//Add this to routes >> <Route path="/createworkout" element={<Createworkout />} />
 
 const App = () => {
   const loggedIn = localStorage.getItem("isLoggedIn");
@@ -47,7 +47,6 @@ const App = () => {
               element={<ResetPasswordScreen />}
             />
             <Route path="/exercisedatabase" element={<Exercisedatabase />} />
-            <Route path="/createworkout" element={<Createworkout />} />
           </Routes>
         </div>
       </Router>
