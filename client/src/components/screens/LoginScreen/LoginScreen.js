@@ -32,7 +32,9 @@ const LoginScreen = ({ }) => {
             );
 
             localStorage.setItem("authToken", data.token);
-
+            localStorage.setItem("isLoggedIn", true);
+            
+            window.location.href = '/';
             history("/");
         } catch (error) {
             setError(error.response.data.error);

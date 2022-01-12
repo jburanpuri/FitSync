@@ -13,35 +13,68 @@ import LogoutScreen from "./components/screens/LogoutScreen/LogoutScreen";
 import HomeScreen from "./components/screens/HomeScreen/HomeScreen";
 
 const App = () => {
-  return (
-    <Router>
-      <div class="topnav">
-        <a href="/">Home</a>
-        <a href="/exercise">Create Workout</a>
-        <a href="/login">Login</a>
-        <a href="/logout">Logout</a>
-      </div>
-      <div className="app">
-        <Routes>
-          <Route exact path="/" element={<HomeScreen />} />
-          <Route exact path="/exercise" element={<PrivateScreen />} />
-          <Route exact path="/logout" element={<LogoutScreen />} />
-          <Route exact path="/login" element={<LoginScreen />} />
-          <Route exact path="/register" element={<RegisterScreen />} />
-          <Route
-            exact
-            path="/forgotpassword"
-            element={<ForgotPasswordScreen />}
-          />
-          <Route
-            exact
-            path="/passwordreset/:resetToken"
-            element={<ResetPasswordScreen />}
-          />
-        </Routes>
-      </div>
-    </Router>
-  );
+  const loggedIn = localStorage.getItem("isLoggedIn");
+
+
+  if(loggedIn!=null){
+    return (
+      <Router>
+        <div class="topnav">
+          <a href="/" class="left">Home</a>
+          <a href="/exercise" class="left">Create Workout</a>
+          <a href="/logout" class="right">Logout</a>
+        </div>
+        <div className="app">
+          <Routes>
+            <Route exact path="/" element={<HomeScreen />} />
+            <Route exact path="/exercise" element={<PrivateScreen />} />
+            <Route exact path="/logout" element={<LogoutScreen />} />
+            <Route exact path="/login" element={<LoginScreen />} />
+            <Route exact path="/register" element={<RegisterScreen />} />
+            <Route
+              exact
+              path="/forgotpassword"
+              element={<ForgotPasswordScreen />}
+            />
+            <Route
+              exact
+              path="/passwordreset/:resetToken"
+              element={<ResetPasswordScreen />}
+            />
+          </Routes>
+        </div>
+      </Router>
+    );
+  }
+  else{
+    return (
+      <Router>
+        <div class="topnav">
+          <a href="/" class="left">Home</a>
+          <a href="/login" class="right">Login</a>
+        </div>
+        <div className="app">
+          <Routes>
+            <Route exact path="/" element={<HomeScreen />} />
+            <Route exact path="/exercise" element={<PrivateScreen />} />
+            <Route exact path="/logout" element={<LogoutScreen />} />
+            <Route exact path="/login" element={<LoginScreen />} />
+            <Route exact path="/register" element={<RegisterScreen />} />
+            <Route
+              exact
+              path="/forgotpassword"
+              element={<ForgotPasswordScreen />}
+            />
+            <Route
+              exact
+              path="/passwordreset/:resetToken"
+              element={<ResetPasswordScreen />}
+            />
+          </Routes>
+        </div>
+      </Router>
+    );
+  }
 };
 
 export default App;

@@ -47,6 +47,7 @@ const RegisterScreen = ({ }) => {
             );
 
             localStorage.setItem("authToken", data.token);
+            localStorage.setItem("isLoggedIn", true);
             window.location.href = '/';
             history.push("/");
         } catch (error) {
