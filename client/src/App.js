@@ -1,5 +1,11 @@
 import { useState } from 'react'
+import { BrowserRouter as Router, Route, Routes} from "react-router-dom"
+import "bootstrap/dist/css/bootstrap.css"
 import './App.css'
+
+import Navbar from "./components/Navbar.component";
+import Exercisedatabase from './components/exercisedatabase.component';
+import Createworkout from './components/createworkout.component';
 
 function App() {
   const [name, setName] = useState('')
@@ -23,10 +29,12 @@ function App() {
   }
 
   //const data = await response.json()
-
-
   return (
-    <div>
+    <Router>   
+      
+      <Navbar />
+ 
+     {/* <div>
       <h1>Register</h1>
       <form onSubmit={registerUser}>
         <input
@@ -52,7 +60,15 @@ function App() {
         <br />
         <input type="submit" value="Register" />
       </form>
-    </div>
-  )
+     
+    </div> */}
+  <Routes>
+    <Route path="/exercisedatabase" element={ <Exercisedatabase/> }/>
+    <Route path="/createworkout" element={ <Createworkout/> }/>
+  </Routes>
+  
+</Router>
+  
+  );
 }
 export default App;
