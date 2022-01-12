@@ -11,7 +11,6 @@ import ForgotPasswordScreen from "./components/screens/ForgotPasswordScreen/Forg
 import ResetPasswordScreen from "./components/screens/ResetPasswordScreen/ResetPasswordScreen";
 import LogoutScreen from "./components/screens/LogoutScreen/LogoutScreen";
 import HomeScreen from "./components/screens/HomeScreen/HomeScreen";
-
 const App = () => {
   const loggedIn = localStorage.getItem("isLoggedIn");
 
@@ -21,7 +20,8 @@ const App = () => {
       <Router>
         <div class="topnav">
           <a href="/" class="left">Home</a>
-          <a href="/exercise" class="left">Create Workout</a>
+          <a href="/createworkout" class="right">CreateWorkout</a>
+          <a href="/exercisedatabase" class="right">Exercise Database</a> 
           <a href="/logout" class="right">Logout</a>
         </div>
         <div className="app">
@@ -31,6 +31,9 @@ const App = () => {
             <Route exact path="/logout" element={<LogoutScreen />} />
             <Route exact path="/login" element={<LoginScreen />} />
             <Route exact path="/register" element={<RegisterScreen />} />
+            <Route path="/exercisedatabase" element={ <Exercisedatabase/>}/>
+            <Route path="/createworkout" element={ <Createworkout/> }/>
+              
             <Route
               exact
               path="/forgotpassword"
