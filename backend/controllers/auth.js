@@ -5,7 +5,7 @@ const sendEmail = require("../utils/sendEmail");
 
 exports.logout = async (req, res) => {
     console.log('LoggedOut');
-    res.clearCookie('jwtoken', { path: '/login' });
+    res.localStorage.clear(); 
     res.status(200).send('User Logout');
 }
 
