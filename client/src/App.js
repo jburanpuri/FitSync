@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 // Routing
-import PrivateRoute from "./components/routing/PrivateRoute";
+//import PrivateRoute from "./components/routing/PrivateRoute";
 
 // Screens
 import PrivateScreen from "./components/screens/PrivateScreen/PrivateScreen";
@@ -15,7 +15,8 @@ const App = () => {
     <Router>
       <div className="app">
         <Routes>
-          <Route path="/" element={<PrivateScreen />} />
+          <Route path="/homepage" element={<PrivateScreen />} />
+          <Route path="/logout" element={<LoginScreen />} />
           <Route exact path="/login" element={<LoginScreen />} />
           <Route exact path="/register" element={<RegisterScreen />} />
           <Route

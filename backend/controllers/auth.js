@@ -3,6 +3,12 @@ const ErrorResponse = require("../utils/errorResponse");
 const User = require("../models/User");
 const sendEmail = require("../utils/sendEmail");
 
+exports.logout = async (req, res) => {
+    console.log('LoggedOut');
+    res.clearCookie('jwtoken', { path: '/login' });
+    res.status(200).send('User Logout');
+}
+
 // @desc    Login user
 exports.login = async (req, res, next) => {
     const { email, password } = req.body;
@@ -138,3 +144,4 @@ const sendToken = (user, statusCode, res) => {
     const token = user.getSignedJwtToken();
     res.status(statusCode).json({ sucess: true, token });
 };
+
