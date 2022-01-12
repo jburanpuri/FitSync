@@ -2,7 +2,9 @@ import "./HomeScreen.css";
 
 const HomeScreen = ({ }) => {
     return (
-        <div>This is the homepage
+        <div className="video">
+            <video src="videos\FitnessVideo.mp4" autoPlay loop muted></video>
+            <img class="center" src="images\FitSync-logos_white.png"></img>
         </div>
     );
 
