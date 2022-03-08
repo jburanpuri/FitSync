@@ -11,8 +11,8 @@ const exerciseSchema = new mongoose.Schema({
     },
     tips: {
         type: String,
-        required: true,
-        default: false
-    }
+        required: false,
+        default: ""
+    },
 });
 module.exports = exercise = mongoose.model('exercise', exerciseSchema);
