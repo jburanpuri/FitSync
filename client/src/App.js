@@ -1,5 +1,11 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
+import React from 'react';
+import Modal from 'react-modal';
+import Calendar from "./components/Calendar"
+
+Modal.setAppElement('#root')
+
 // Routing
 //import PrivateRoute from "./components/routing/PrivateRoute";
 
@@ -26,6 +32,7 @@ const App = () => {
           <a href="/" class="left">Home</a>
           <a href="/createworkout" class="left">CreateWorkout</a>
           <a href="/exercisedatabase" class="left">Exercise Database</a>
+          <a href="/calendar" class="left">Workout Schedule</a>
           <a href="/logout" class="right">Logout</a>
         </div>
         <div className="app">
@@ -47,6 +54,7 @@ const App = () => {
               element={<ResetPasswordScreen />}
             />
             <Route path="/exercisedatabase" element={<Exercisedatabase />} />
+            <Route exact path="/calendar" element={<Calendar />} />
           </Routes>
         </div>
       </Router>

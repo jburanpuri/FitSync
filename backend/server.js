@@ -5,11 +5,15 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const app = express();
 const errorHandler = require("./middleware/error");
+const bodyparser = require("body-parser");
 
 connectDB();
 
 app.use(cors());
 app.use(express.json());
+
+//test
+app.use(bodyparser.json());
 
 const exercisesRouter = require('./routes/exercises')
 const workoutsRouter = require('./routes/workouts')
@@ -24,6 +28,8 @@ app.get("/", (req, res, next) => {
 
 app.use('/api/auth', require('./routes/auth'));
 app.use("/api/private", require("./routes/private"));
+
+app.use("/api/calendar", require("./Controllers/CalendarController"));
 
 app.use(errorHandler);
 
