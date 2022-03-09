@@ -8,10 +8,28 @@ router.route('/').get((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err))
 })
 
+router.route('/workoutSearch/:uid').get((req, res) => {
+    const uid = req.params.uid;
+    console.log(req.body.uid);
+    Workout.findOne({
+        uid : uid
+    })
+    .then(workout => {
+        if(workout == null) {
+            res.send("That workout doesn't exist!")
+        }
+        else {
+            res.json(workout)
+        }
+    })
+    .catch(error => console.error(error))
+})
+
 //add a new workout
 router.route('/addWorkout').post((req, res) => {
     const workoutName = req.body.workoutName;
     const exercises = req.body.exercises;
+    const uid = req.body.uid;
     console.log(workoutName)
     console.log(exercises)
     Workout.findOne({
@@ -19,7 +37,7 @@ router.route('/addWorkout').post((req, res) => {
     })
     .then(result => {
         if(result == null) { //no workout with that name yet
-            let newWorkout = new Workout({workoutName, exercises});
+            let newWorkout = new Workout({workoutName, exercises, uid});
             newWorkout.save()
             .then(() => res.json('Workout added'))
             .catch(err => res.status(400).json('Error: ' + err))

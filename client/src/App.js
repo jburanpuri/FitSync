@@ -12,7 +12,8 @@ import ResetPasswordScreen from "./components/screens/ResetPasswordScreen/ResetP
 import LogoutScreen from "./components/screens/LogoutScreen/LogoutScreen";
 import HomeScreen from "./components/screens/HomeScreen/HomeScreen";
 import Exercisedatabase from './components/exercisedatabase.component';
-//import Createworkout from './components/createworkout.component';
+import Createworkout from './components/createworkout.component';
+import Findworkout from "./components/findworkout.component";
 //Add this to routes >> <Route path="/createworkout" element={<Createworkout />} />
 
 const App = () => {
@@ -24,8 +25,9 @@ const App = () => {
       <Router>
         <div className="topnav">
           <a href="/" className="left">Home</a>
-          <a href="/createworkout" className="left">CreateWorkout</a>
+          <a href="/createworkout" className="left">Create Workout</a>
           <a href="/exercisedatabase" className="left">Exercise Database</a>
+          <a href="/findworkout" className="left">Find Workout</a>
           <a href="/logout" className="right">Logout</a>
         </div>
         <div className="app">
@@ -47,6 +49,9 @@ const App = () => {
               element={<ResetPasswordScreen />}
             />
             <Route path="/exercisedatabase" element={<Exercisedatabase />} />
+            <Route path="/createworkout" element={<Createworkout />} />
+            <Route path="/findworkout" element={<Findworkout/>} />
+            
           </Routes>
         </div>
       </Router>

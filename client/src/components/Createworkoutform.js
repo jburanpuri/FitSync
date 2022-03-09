@@ -20,11 +20,12 @@ import "shards-ui/dist/css/shards.min.css"
 function Createworkoutform({formData = {
     workoutName: 'Sample Name',
     exercises:[
-        {
+        { 
         name:'Sample Exercise',
         sets:'#',
         repetitions:'#'
     },],
+    uid: 'Sample Id',
 },},){
     
     const{register, errors, handleSubmit} = useForm({
@@ -44,7 +45,8 @@ function Createworkoutform({formData = {
         }); 
         let databody = {
             "workoutName": data.workoutName,
-            "exercises": data.exercises
+            "exercises": data.exercises,
+            "uid": data.uid
         }
         // const newWorkout = {
         //     workoutName: data.workoutName,
@@ -60,6 +62,7 @@ function Createworkoutform({formData = {
         })
         .then(res => res.json())
         .then(data => console.log(data));
+        window.alert("Workout Added Successfully!");
 }
         // axios.post('http://127.0.0.1:5000/workouts/addWorkout/', newWorkout)
         // .then(res => console.log(res.data));
@@ -70,7 +73,7 @@ function Createworkoutform({formData = {
     }
 
     const onDeleteExercise = (index) => {
-        setExerciseIDs(exerciseIDs.filter((id) => id != index));
+        setExerciseIDs(exerciseIDs.filter((id) => id !== index));
     }
 
     return(
@@ -79,10 +82,25 @@ function Createworkoutform({formData = {
                 <InputGroup className="mb-2">
                     <InputGroupAddon type="prepend">
                         <InputGroupText>Workout Name</InputGroupText>
+                        <div>
+                            Workout Name
+                        </div>
                     </InputGroupAddon>
                     <input placeholder="Name of Workout" {...register('workoutName', {required:true})}/>
                     </InputGroup>
+                    <InputGroup className="mb-2">
+                    <InputGroupAddon type="prepend">
+
+                        <div>
+                            Unique Workout ID
+                        </div>
+                    </InputGroupAddon>
+                    <input placeholder="ID" {...register('uid', {required:true})}/>
+                    </InputGroup> 
                 <Container>
+                    <div>
+                        Exercises
+                    </div>
                     {exerciseIDs.map((index) => (
                          <Row key={index}>
                          <Col>

@@ -4,10 +4,11 @@ const Schema = mongoose.Schema
 const workoutSchema = new Schema({
     workoutName: {type: String},
     exercises: [{
-        workoutName: String,
+        name: String,
         sets: Number,
         repetitions: Number,
     }],
+    uid: {type: String},
 },)
 
 const Workout = mongoose.model('Workout', workoutSchema);
