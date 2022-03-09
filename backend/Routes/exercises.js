@@ -24,4 +24,21 @@ router.route('/add').post((req, res) => {
         .catch(err => res.status(400).json(__dirname + 'Error: ' + err));
 });
 
+router.route('/exerciseSearch/:exerciseName').get((req, res) => {
+    const exerciseName = req.params.exerciseName;
+    console.log(req.body.exerciseName);
+    Exercise.findOne({
+        exerciseName: exerciseName
+    })
+    .then(exercise => {
+        if(exercise == null) {
+            res.send("That exercise doesn't exist!")
+        }
+        else {
+            res.json(exercise)
+        }
+    })
+    .catch(error => console.error(error))
+})
+
 module.exports = router;

@@ -4,7 +4,6 @@ import React from 'react';
 import Modal from 'react-modal';
 import Calendar from "./components/Calendar"
 
-Modal.setAppElement('#root')
 
 // Routing
 //import PrivateRoute from "./components/routing/PrivateRoute";
@@ -21,6 +20,8 @@ import Exercisedatabase from './components/exercisedatabase.component';
 //import Createworkout from './components/createworkout.component';
 //Add this to routes >> <Route path="/createworkout" element={<Createworkout />} />
 
+Modal.setAppElement('#root')
+
 const App = () => {
   const loggedIn = localStorage.getItem("isLoggedIn");
 
@@ -28,12 +29,12 @@ const App = () => {
   if (loggedIn != null) {
     return (
       <Router>
-        <div class="topnav">
-          <a href="/" class="left">Home</a>
-          <a href="/createworkout" class="left">CreateWorkout</a>
-          <a href="/exercisedatabase" class="left">Exercise Database</a>
-          <a href="/calendar" class="left">Workout Schedule</a>
-          <a href="/logout" class="right">Logout</a>
+        <div className="topnav">
+          <a href="/" className="left">Home</a>
+          <a href="/createworkout" className="left">CreateWorkout</a>
+          <a href="/exercisedatabase" className="left">Exercise Database</a>
+          <a href="/calendar" className="left">Workout Schedule</a>
+          <a href="/logout" className="right">Logout</a>
         </div>
         <div className="app">
           <Routes>
