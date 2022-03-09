@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import React from 'react';
 import Modal from 'react-modal';
 import Calendar from "./components/Calendar"
+import Email from "./components/Email"
+import Result from "./components/result"
 
 
 // Routing
@@ -34,6 +36,7 @@ const App = () => {
           <a href="/createworkout" className="left">CreateWorkout</a>
           <a href="/exercisedatabase" className="left">Exercise Database</a>
           <a href="/calendar" className="left">Workout Schedule</a>
+          <a href="/email" className="left">Contact Support</a>
           <a href="/logout" className="right">Logout</a>
         </div>
         <div className="app">
@@ -56,6 +59,8 @@ const App = () => {
             />
             <Route path="/exercisedatabase" element={<Exercisedatabase />} />
             <Route exact path="/calendar" element={<Calendar />} />
+            <Route exact path="/email" element={<Email />} />
+            <Route exact path="/result" element={<Result />} />
           </Routes>
         </div>
       </Router>

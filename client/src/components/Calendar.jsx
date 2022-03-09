@@ -31,6 +31,11 @@ export default function() {
 
     return(
         <section>
+            <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+            />
+            <br></br>
             <br></br>
             <br></br>
             <button onClick={()=>setModalOpen(true)}>Add Event</button>
