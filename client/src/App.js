@@ -5,6 +5,10 @@ import Modal from 'react-modal';
 import Calendar from "./components/Calendar"
 import Email from "./components/Email"
 import Result from "./components/result"
+import SetAvatar from "./components/SetAvatar";
+import Chat from "./pages/Chat";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 
 
 // Routing
@@ -12,8 +16,6 @@ import Result from "./components/result"
 
 // Screens
 import PrivateScreen from "./components/screens/PrivateScreen/PrivateScreen";
-import LoginScreen from "./components/screens/LoginScreen/LoginScreen";
-import RegisterScreen from "./components/screens/RegisterScreen/RegisterScreen";
 import ForgotPasswordScreen from "./components/screens/ForgotPasswordScreen/ForgotPasswordScreen";
 import ResetPasswordScreen from "./components/screens/ResetPasswordScreen/ResetPasswordScreen";
 import LogoutScreen from "./components/screens/LogoutScreen/LogoutScreen";
@@ -37,15 +39,17 @@ const App = () => {
           <a href="/exercisedatabase" className="left">Exercise Database</a>
           <a href="/calendar" className="left">Workout Schedule</a>
           <a href="/email" className="left">Contact Support</a>
+          <a href="/chat" className="left">Messages</a>
           <a href="/logout" className="right">Logout</a>
         </div>
         <div className="app">
           <Routes>
-            <Route exact path="/" element={<HomeScreen />} />
             <Route exact path="/exercise" element={<PrivateScreen />} />
             <Route exact path="/logout" element={<LogoutScreen />} />
-            <Route exact path="/login" element={<LoginScreen />} />
-            <Route exact path="/register" element={<RegisterScreen />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/setAvatar" element={<SetAvatar />} />
+            <Route path="/chat" element={<Chat />} />
 
             <Route
               exact
@@ -76,10 +80,9 @@ const App = () => {
         <div className="app">
           <Routes>
             <Route exact path="/" element={<HomeScreen />} />
-            <Route exact path="/exercise" element={<PrivateScreen />} />
             <Route exact path="/logout" element={<LogoutScreen />} />
-            <Route exact path="/login" element={<LoginScreen />} />
-            <Route exact path="/register" element={<RegisterScreen />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
             <Route
               exact
               path="/forgotpassword"

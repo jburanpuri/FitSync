@@ -1,19 +1,31 @@
-require("dotenv").config({ path: "./config.env" });
-const connectDB = require('./config/db');
+require("dotenv").config();
 const express = require('express');
 const cors = require('cors');
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const fs = require('fs')
 const multer = require('multer')
 const app = express();
-const errorHandler = require("./middleware/error");
 const bodyparser = require("body-parser");
 const nodemailer = require('nodemailer')
+const authRoutes = require("./routes/auth");
+const messageRoutes = require("./routes/messages");
+const socket = require("socket.io");
 
-connectDB();
 
 app.use(cors());
 app.use(express.json());
+
+mongoose
+  .connect(process.env.MONGO_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => {
+    console.log("DB Connetion Successfull");
+  })
+  .catch((err) => {
+    console.log(err.message);
+  });
 
 app.use(bodyparser.urlencoded({ extended: true }));
 app.use(express.static('public'))
@@ -33,12 +45,16 @@ app.get("/", (req, res, next) => {
     res.send("Api running");
 });
 
+//removed
+/*
 app.use('/api/auth', require('./routes/auth'));
-app.use("/api/private", require("./routes/private"));
+app.use("/api/private", require("./routes/private"));*/
 
-app.use("/api/calendar", require("./Controllers/CalendarController"));
+app.use("/api/auth", authRoutes);
+app.use("/api/messages", messageRoutes);
 
-app.use(errorHandler);
+app.use("/api/calendar", require("./controllers/CalendarController"));
+
 
 var to;
 var subject;
@@ -116,10 +132,32 @@ app.post('/sendemail',(req,res) => {
 const PORT = process.env.PORT || 5000;
 
 const server = app.listen(PORT, () =>
-    console.log(`Sever running on port ${PORT}`)
+    console.log(`Server running on port ${PORT}`)
 );
 
 process.on("unhandledRejection", (err, promise) => {
     console.log(`Logged Error: ${err.message}`);
     server.close(() => process.exit(1));
+});
+
+const io = socket(server, {
+  cors: {
+    origin: "http://localhost:3000",
+    credentials: true,
+  },
+});
+
+global.onlineUsers = new Map();
+io.on("connection", (socket) => {
+  global.chatSocket = socket;
+  socket.on("add-user", (userId) => {
+    onlineUsers.set(userId, socket.id);
+  });
+
+  socket.on("send-msg", (data) => {
+    const sendUserSocket = onlineUsers.get(data.to);
+    if (sendUserSocket) {
+      socket.to(sendUserSocket).emit("msg-recieve", data.msg);
+    }
+  });
 });
