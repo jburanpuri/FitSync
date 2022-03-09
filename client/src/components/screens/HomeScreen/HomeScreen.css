@@ -9,12 +9,11 @@ video {
 h1 { 
     color: white;
     font-family: 'Helvetica Neue', sans-serif; 
-    font-size: 250px; 
+    font-size: 25px; 
     font-weight: bold; 
     letter-spacing: -1px; 
     line-height: 1; 
     text-align: center; 
-    -webkit-text-stroke: 2px #1060D3;
 }
 .center {
     display: block;
