@@ -38,7 +38,7 @@ const App = () => {
           <a href="/createworkout" className="left">CreateWorkout</a>
           <a href="/exercisedatabase" className="left">Exercise Database</a>
           <a href="/calendar" className="left">Workout Schedule</a>
-          <a href="/email" className="left">Contact Support</a>
+          <a href="/email" className="left">Get Verified</a>
           <a href="/chat" className="left">Messages</a>
           <a href="/logout" className="right">Logout</a>
         </div>
@@ -50,6 +50,7 @@ const App = () => {
             <Route path="/login" element={<Login />} />
             <Route path="/setAvatar" element={<SetAvatar />} />
             <Route path="/chat" element={<Chat />} />
+            <Route path="/" element={<HomeScreen />} />
 
             <Route
               exact

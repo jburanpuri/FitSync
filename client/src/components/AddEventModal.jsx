@@ -19,7 +19,12 @@ export default function ({ isOpen, onClose, onEventAdded }) {
     }
 
     return (
+        
         <Modal isOpen={isOpen} onRequestClose={onClose}>
+            <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+            />
             <form onSubmit={onSubmit}>
                 <input placeholder="Title" value={title} onChange={e => setTitle(e.target.value)} />
 
