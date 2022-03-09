@@ -74,8 +74,8 @@ const App = () => {
     return (
       <Router>
         <div class="topnav">
-          <a href="/" class="left">Home</a>
-          <a href="/login" class="right">Login</a>
+          <a href="/" className="left">Home</a>
+          <a href="/login" className="right">Login</a>
         </div>
         <div className="app">
           <Routes>
