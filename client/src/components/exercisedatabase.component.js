@@ -43,11 +43,20 @@ export default class exercisedatabase extends Component {
         return exercises.map((exercise, index)=>
           (
             <div key = {index}>
-                <Collapsible label={exercise.exerciseName}> 
-                    <h3>Description of Exercise</h3>
+                <br></br><br></br><br></br>
+                <Collapsible label={exercise.exerciseName}>
+                    
+                    <div id="centerVideo">
+                        <video id="animation"  src={`videos/${exercise.exerciseName.replace(/\s/g, "")}.mp4`} autoPlay loop muted>
+                        </video>
+                    
+                    <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
+
+                    <h3>{exercise.exerciseName}</h3>
                     <h5>{exercise.description}</h5>
                     <h3>Tips</h3>
                     <h5>{exercise.tips}</h5>
+                    </div>
                 </Collapsible>    
             </div>
             )

@@ -3,6 +3,16 @@ import "./Collapsible.css";
 
 function Collapsible(props) {
     const [isOpen, setIsOpen] = useState(false);
+    const [style, setStyle] = useState("hide");
+
+    const hide = () => {
+        setStyle("hide");
+        console.log("hide");
+    }
+    const show = () => {
+        setStyle("show");
+        console.log("show");
+    }
 
     const parentRef = useRef();
 
@@ -12,16 +22,20 @@ function Collapsible(props) {
     return (
 
         <div className="collapsible">
-            <button className="toggle" onClick={() => setIsOpen(!isOpen)}>{props.label}</button>
+            <div id="centerButton">
+                <button className="toggle" onClick={() => {setIsOpen(!isOpen)}}>{props.label}</button>
+            </div>
             <div className="content-parent"
                 ref={parentRef}
                 style={
                     isOpen ? {
-                        height: parentRef.current.scrollHeight + "px"
+                        height: parentRef.current.scrollHeight + "px",
+                        display: "inline"
                     }
                         :
                         {
-                            height: "0px"
+                            height: "0px",
+                            display: "none"
                         }
                 }
             >

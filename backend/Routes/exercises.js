@@ -19,10 +19,9 @@ const newExercise = new Exercise({
     description,
     tips,
 });
-
 newExercise.save()
 .then(() => res.json('Exercise added'))
-.catch(err=> res.status(400).json('Error: ' + err));
+.catch(err=> res.status(400).json(__dirname + 'Error: ' + err));
 });
 
 module.exports = router;
