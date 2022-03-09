@@ -1,4 +1,4 @@
-import React, {Component, useState} from 'react';
+import React, { Component, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Collapsible from './Collapsible';
@@ -24,13 +24,13 @@ const style = {
     border: '2px solid #000',
     boxShadow: 24,
     p: 4,
-  };
+};
 
 export default class exercisedatabase extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
-        this.state = {exercises:[], exerciseSearch:[], search: '', searchCompare: '', open: [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]}
+        this.state = { exercises: [], exerciseSearch: [], search: '', searchCompare: '', open: [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false] }
         this.handleChange = this.handleChange.bind(this)
     }
 
@@ -39,13 +39,13 @@ export default class exercisedatabase extends Component {
         const halfSec = 10;
         let exerciseSearchTest = []
         setInterval(() => {
-            if(this.state.search.length > 0 && this.state.search != this.state.searchCompare) {
+            if (this.state.search.length > 0 && this.state.search != this.state.searchCompare) {
                 this.state.exercises.forEach(exercise => {
                     let similarity = stringSimilarity.compareTwoStrings(this.state.search.toLowerCase(), exercise.exerciseName.toLowerCase())
                     console.log(similarity)
                     console.log(this.state.search)
                     console.log(exercise.exerciseName)
-                    if(similarity >= 0.3) {
+                    if (similarity >= 0.3) {
                         //this.setState(prevState => ({
                         //    exerciseSearch: [...prevState.exerciseSearch, exercise]
                         //}))
@@ -54,14 +54,14 @@ export default class exercisedatabase extends Component {
                     console.log(this.state.exerciseSearch)
                 })
                 //this.displayExercises(this.state.exerciseSearch)
-                this.setState({exerciseSearch: exerciseSearchTest, searchCompare: this.state.search}, () => {
+                this.setState({ exerciseSearch: exerciseSearchTest, searchCompare: this.state.search }, () => {
                     exerciseSearchTest = []
                     //this.setState({exerciseSearch: []})
                 })                     //may need to put in async part
             }
         }, halfSec)
     };
-    
+
     // SearchBar=()=>{
     //     const[searchTerm, setSearchTerm] = useState('');
     //     return(
@@ -78,34 +78,34 @@ export default class exercisedatabase extends Component {
     handleOpen = (index) => {
         let newArray = [...this.state.open]
         newArray[index] = true
-        this.setState({open: newArray})
+        this.setState({ open: newArray })
         console.log("open")
     }
     handleClose = (index) => {
         let newArray = [...this.state.open]
         newArray[index] = false
-        this.setState({open: newArray})
+        this.setState({ open: newArray })
         console.log("close")
     }
 
     handleChange = (event) => {
-        this.setState({search: event.target.value})
+        this.setState({ search: event.target.value })
     }
 
     getExercise = () => {
         axios.get('http://127.0.0.1:5000/exercises/')
-        .then((response)=>{
-            const data = response.data
-            this.setState({exercises:data});
-            console.log("Data has been received!")
-        })
-        .catch((error)=>{
-            console.log("Error: " + error);
-        })
+            .then((response) => {
+                const data = response.data
+                this.setState({ exercises: data });
+                console.log("Data has been received!")
+            })
+            .catch((error) => {
+                console.log("Error: " + error);
+            })
     }
     displayExercises = (exercises) => {
         console.log(exercises)
-        if(!exercises.length){
+        if (!exercises.length) {
             console.log("null");
         }
         /*console.log(exercises)
@@ -145,14 +145,14 @@ export default class exercisedatabase extends Component {
                     ))
             )
         }*/
-            return (
-                exercises.map((exercise, index)=>(
-                <div key = {index}>
+        return (
+            exercises.map((exercise, index) => (
+                <div key={index}>
                     <br></br><br></br><br></br>
                     <Collapsible label={exercise.exerciseName}>
-                        
+
                         <div className="centerVideo">
-                            <video className="animation"  src={`videos/${exercise.exerciseName.replace(/\s/g, "")}.mp4`} autoPlay loop muted></video>
+                            <video className="animation" src={`videos/${exercise.exerciseName.replace(/\s/g, "")}.mp4`} autoPlay loop muted></video>
                             <Button onClick={() => this.handleOpen(index)}>expand</Button>
                             <Modal
                                 open={this.state.open[index]}
@@ -162,46 +162,46 @@ export default class exercisedatabase extends Component {
                             >
                                 <Box sx={style}>
                                     <div id="centerModalVideo">
-                                    <video className="animation2" src={`videos/${exercise.exerciseName.replace(/\s/g, "")}.mp4`} autoPlay loop muted></video>
+                                        <video className="animation2" src={`videos/${exercise.exerciseName.replace(/\s/g, "")}.mp4`} autoPlay loop muted></video>
                                     </div>
                                 </Box>
                             </Modal>
-                        
-                        <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
 
-                        <h3>{exercise.exerciseName}</h3>
-                        <h5>{exercise.description}</h5>
-                        <h3>Tips</h3>
-                        <h5>{exercise.tips}</h5>
+                            <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
+
+                            <h3>{exercise.exerciseName}</h3>
+                            <h5>{exercise.description}</h5>
+                            <h3>Tips</h3>
+                            <h5>{exercise.tips}</h5>
                         </div>
-                    </Collapsible>    
+                    </Collapsible>
                 </div>
-                ))
-            )
+            ))
+        )
     };
 
-    render(){
+    render() {
         let content
-        if(this.state.exercises == []){
+        if (this.state.exercises == []) {
             content = <h3></h3>
         }
-        else if (this.state.exercises.length > 0 && this.state.exerciseSearch.length > 0){
-            content = <div className = "inExercise">
-            {this.displayExercises(this.state.exerciseSearch)} </div>
+        else if (this.state.exercises.length > 0 && this.state.exerciseSearch.length > 0) {
+            content = <div className="inExercise">
+                {this.displayExercises(this.state.exerciseSearch)} </div>
         }
-        else{
-            content = <div className = "inExercise">
-            {this.displayExercises(this.state.exercises)} </div>
+        else {
+            content = <div className="inExercise">
+                {this.displayExercises(this.state.exercises)} </div>
         }
-        if(document.getElementById('search') != null) {
+        if (document.getElementById('search') != null) {
             console.log(document.getElementById('search').value);
         }
         //if(document.getElementById('search').value == null) {
         //    console.log('badump')
         //}
         //console.log(document.getElementById('search').value)
-        
-        return(
+
+        return (
             <div>
                 {console.log("hmmmm")}
                 <div id="searchDiv">
@@ -215,7 +215,7 @@ export default class exercisedatabase extends Component {
                         />
                     </form>
                 </div>
-                <div> 
+                <div>
                     {content}
                 </div>
             </div>
