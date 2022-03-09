@@ -20,8 +20,20 @@ const UserSchema = new mongoose.Schema({
     password: {
         type: String,
         required: [true, "Please add a password"],
-        minlength: 6,
+        minlength: [6, "Password must be 6 characters"],
         select: false,
+    },
+    isTrainer: {
+        type: Boolean,
+        default: false,
+    },
+    profilePicture: {
+        type: String,
+        default: "",
+    },
+    coverPicture: {
+        type: String,
+        default: "",
     },
     resetPasswordToken: String,
     resetPasswordExpire: Date,

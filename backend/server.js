@@ -5,22 +5,27 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const app = express();
 const errorHandler = require("./middleware/error");
+const conversationRoute = require("./Routes/conversations");
+const messageRoute = require("./Routes/messages");
 
 connectDB();
 
 app.use(cors());
 app.use(express.json());
 
-const exercisesRouter = require('./routes/exercises')
-const workoutsRouter = require('./routes/workouts')
+const exercisesRouter = require('./Routes/exercises')
+const workoutsRouter = require('./Routes/workouts')
 //routes
 
-app.use('/exercises', exercisesRouter)
-app.use('/workouts', workoutsRouter)
 
 app.get("/", (req, res, next) => {
     res.send("Api running");
 });
+
+app.use('/exercises', exercisesRouter)
+app.use('/workouts', workoutsRouter)
+app.use("/conversations", conversationRoute);
+app.use("/messages", messageRoute);
 
 app.use('/api/auth', require('./routes/auth'));
 app.use("/api/private", require("./routes/private"));
