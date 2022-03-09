@@ -9,6 +9,8 @@ export default function () {
             />
             <br></br>
             <br></br>
+            <br></br>
+            <br></br>
             <div class="container">
                 <h2 class="text-center">
                     Apply for Verification
@@ -28,7 +30,7 @@ export default function () {
                         <input type="file" required class="form-control" name="image" id="" />
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-block btn-danger">
+                        <button type="submit" class="button">
                             Send Message
                         </button>
                     </div>

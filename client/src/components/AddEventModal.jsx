@@ -32,7 +32,7 @@ export default function ({ isOpen, onClose, onEventAdded }) {
                     <label>End Date</label>
                     <Datetime value={start} onChange={date => setEnd(date)} />
                 </div>
-                <button>Add event</button>
+                <button class="button">Add event</button>
             </form>
         </Modal>
 

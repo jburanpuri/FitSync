@@ -4,6 +4,7 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import AddEventModal from './AddEventModal';
 import axios from 'axios';
 import moment from 'moment';
+import "./Calendar.css"
 
 export default function() {
     const [modalOpen, setModalOpen] = useState(false);
@@ -38,7 +39,7 @@ export default function() {
             <br></br>
             <br></br>
             <br></br>
-            <button onClick={()=>setModalOpen(true)}>Add Event</button>
+            <button class="button" onClick={()=>setModalOpen(true)}>Add Event</button>
         
                 <div style={{position:'relative', zIndex:0}}>
                     <FullCalendar
