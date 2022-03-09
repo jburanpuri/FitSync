@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Messenger from "./pages/messenger/Messenger";
 
 // Routing
 //import PrivateRoute from "./components/routing/PrivateRoute";
@@ -22,7 +23,7 @@ const App = () => {
   if (loggedIn != null) {
     return (
       <Router>
-        <div class="topnav">
+        <div className="topnav">
           <a href="/" class="left">Home</a>
           <a href="/createworkout" class="left">CreateWorkout</a>
           <a href="/exercisedatabase" class="left">Exercise Database</a>
@@ -36,6 +37,8 @@ const App = () => {
             <Route exact path="/logout" element={<LogoutScreen />} />
             <Route exact path="/login" element={<LoginScreen />} />
             <Route exact path="/register" element={<RegisterScreen />} />
+            <Route path="/messenger"> {<Messenger />}
+            </Route>
 
             <Route
               exact
