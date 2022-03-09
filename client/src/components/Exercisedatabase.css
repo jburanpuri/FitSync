@@ -26,11 +26,18 @@ input{
     position: absolute;
     box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
 }
-
+.animation2 {
+    object-fit: initial;
+    width: 620px;
+    height: 420px;
+    
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+}
 .centerVideo {
     padding-left: 20px;
     padding-top: 20px;
     padding-bottom: 20px;
 
 }
+
 

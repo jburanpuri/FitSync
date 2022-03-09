@@ -4,7 +4,7 @@ const HomeScreen = ({ }) => {
     return (
         <div className="video">
             <video src="videos\FitnessVideo.mp4" autoPlay loop muted></video>
-            <img class="center" src="images\FitSync-logos_white.png"></img>
+            <img className="center" src="images\FitSync-logos_white.png"></img>
         </div>
     );
 

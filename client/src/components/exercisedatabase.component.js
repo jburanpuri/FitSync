@@ -6,13 +6,31 @@ import Collapsible from './Collapsible';
 import "./SearchBar.css"
 import "./Exercisedatabase.css"
 
+//import * as React from 'react';
+import Box from '@mui/material/Box';
+import Modal from '@mui/material/Modal';
+import Button from '@mui/material/Button';
+
 var stringSimilarity = require("string-similarity");
+
+const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 700,
+    height: 500,
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+    p: 4,
+  };
 
 export default class exercisedatabase extends Component {
 
     constructor(props){
         super(props);
-        this.state = {exercises:[], exerciseSearch:[], search: '', searchCompare: ''}
+        this.state = {exercises:[], exerciseSearch:[], search: '', searchCompare: '', open: [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]}
         this.handleChange = this.handleChange.bind(this)
     }
 
@@ -56,6 +74,19 @@ export default class exercisedatabase extends Component {
         axios.post('http://127.0.0.1:5000/exercises/exerciseSearch', {
         })
     }*/
+
+    handleOpen = (index) => {
+        let newArray = [...this.state.open]
+        newArray[index] = true
+        this.setState({open: newArray})
+        console.log("open")
+    }
+    handleClose = (index) => {
+        let newArray = [...this.state.open]
+        newArray[index] = false
+        this.setState({open: newArray})
+        console.log("close")
+    }
 
     handleChange = (event) => {
         this.setState({search: event.target.value})
@@ -121,8 +152,20 @@ export default class exercisedatabase extends Component {
                     <Collapsible label={exercise.exerciseName}>
                         
                         <div className="centerVideo">
-                            <video className="animation"  src={`videos/${exercise.exerciseName.replace(/\s/g, "")}.mp4`} autoPlay loop muted>
-                            </video>
+                            <video className="animation"  src={`videos/${exercise.exerciseName.replace(/\s/g, "")}.mp4`} autoPlay loop muted></video>
+                            <Button onClick={() => this.handleOpen(index)}>expand</Button>
+                            <Modal
+                                open={this.state.open[index]}
+                                onClose={() => this.handleClose(index)}
+                                aria-labelledby="modal-modal-title"
+                                aria-describedby="modal-modal-description"
+                            >
+                                <Box sx={style}>
+                                    <div id="centerModalVideo">
+                                    <video className="animation2" src={`videos/${exercise.exerciseName.replace(/\s/g, "")}.mp4`} autoPlay loop muted></video>
+                                    </div>
+                                </Box>
+                            </Modal>
                         
                         <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
 
