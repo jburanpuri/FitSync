@@ -27,6 +27,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     default: "",
   },
+  isTrainer: {
+    type: Boolean,
+    default: false,
+  },
   
 });
 
