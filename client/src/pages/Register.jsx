@@ -92,8 +92,8 @@ export default function Register() {
       <FormContainer>
         <form action="" onSubmit={(event) => handleSubmit(event)}>
           <div className="brand">
-            <img src={Logo} alt="logo" />
-            <h1>snappy</h1>
+
+            <h1>FitSync</h1>
           </div>
           <input
             type="text"
@@ -121,7 +121,7 @@ export default function Register() {
           />
           <button type="submit">Create User</button>
           <span>
-            Already have an account ? <Link to="/login">Login.</Link>
+            Already have an account? <Link to="/login">Login.</Link>
           </span>
         </form>
       </FormContainer>
@@ -138,7 +138,7 @@ const FormContainer = styled.div`
   justify-content: center;
   gap: 1rem;
   align-items: center;
-  background-color: #131324;
+  background-color: #000000;
   .brand {
     display: flex;
     align-items: center;
@@ -157,16 +157,16 @@ const FormContainer = styled.div`
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    background-color: #00000076;
+    background-color: #1060d3;
     border-radius: 2rem;
     padding: 3rem 5rem;
   }
   input {
-    background-color: transparent;
+    background-color: #ffffff;
     padding: 1rem;
-    border: 0.1rem solid #4e0eff;
+    border: 0.1rem solid #1060d3;
     border-radius: 0.4rem;
-    color: white;
+    color: black;
     width: 100%;
     font-size: 1rem;
     &:focus {
@@ -175,7 +175,7 @@ const FormContainer = styled.div`
     }
   }
   button {
-    background-color: #4e0eff;
+    background-color: #000000;
     color: white;
     padding: 1rem 2rem;
     border: none;
@@ -185,14 +185,14 @@ const FormContainer = styled.div`
     font-size: 1rem;
     text-transform: uppercase;
     &:hover {
-      background-color: #4e0eff;
+      background-color: #808080;
     }
   }
   span {
     color: white;
     text-transform: uppercase;
     a {
-      color: #4e0eff;
+      color: #ffffff;
       text-decoration: none;
       font-weight: bold;
     }

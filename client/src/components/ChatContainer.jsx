@@ -90,9 +90,8 @@ export default function ChatContainer({ currentChat, socket }) {
           return (
             <div ref={scrollRef} key={uuidv4()}>
               <div
-                className={`message ${
-                  message.fromSelf ? "sended" : "recieved"
-                }`}
+                className={`message ${message.fromSelf ? "sended" : "recieved"
+                  }`}
               >
                 <div className="content ">
                   <p>{message.message}</p>
@@ -168,13 +167,13 @@ const Container = styled.div`
     .sended {
       justify-content: flex-end;
       .content {
-        background-color: #4f04ff21;
+        background-color: #3e3e5a;
       }
     }
     .recieved {
       justify-content: flex-start;
       .content {
-        background-color: #9900ff20;
+        background-color: #1060d3;
       }
     }
   }
