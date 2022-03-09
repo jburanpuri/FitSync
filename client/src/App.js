@@ -22,11 +22,11 @@ const App = () => {
   if (loggedIn != null) {
     return (
       <Router>
-        <div class="topnav">
-          <a href="/" class="left">Home</a>
-          <a href="/createworkout" class="left">CreateWorkout</a>
-          <a href="/exercisedatabase" class="left">Exercise Database</a>
-          <a href="/logout" class="right">Logout</a>
+        <div className="topnav">
+          <a href="/" className="left">Home</a>
+          <a href="/createworkout" className="left">CreateWorkout</a>
+          <a href="/exercisedatabase" className="left">Exercise Database</a>
+          <a href="/logout" className="right">Logout</a>
         </div>
         <div className="app">
           <Routes>
