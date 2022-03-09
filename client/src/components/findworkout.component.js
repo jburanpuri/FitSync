@@ -57,6 +57,8 @@ export default class Findworkout extends Component {
             console.log(this.state.workouts)
             for(let i of workout.exercises){
                 const name = i.name;
+                const sets = i.sets;
+                const reps = i.repetitions;
                 console.log(name);
                 axios.get('http://127.0.0.1:5000/exercises/exerciseSearch/'+name)
                 .then((res)=>{
@@ -65,6 +67,7 @@ export default class Findworkout extends Component {
                         exercises:[...previousState.exercises,exercise]
                     }));
                     console.log(this.state.exercises);
+               
                      
                 //   return(
                 //     <div>
@@ -99,7 +102,7 @@ export default class Findworkout extends Component {
             content = <h3></h3>
         }
         else{
-            content = <div>{this.displayWorkout(this.state.exercises)}</div>
+            content =<div><div><h2>{this.state.workouts.workoutName}</h2></div><div>{this.displayWorkout(this.state.exercises)}</div></div>
         }
 
        return(
