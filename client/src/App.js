@@ -66,8 +66,8 @@ const App = () => {
             />
             <Route path="/exercisedatabase" element={<Exercisedatabase />} />
             <Route path="/createworkout" element={<Createworkout />} />
-            <Route path="/findworkout" element={<Findworkout/>} />
-            
+            <Route path="/findworkout" element={<Findworkout />} />
+
             <Route exact path="/calendar" element={<Calendar />} />
             <Route exact path="/email" element={<Email />} />
             <Route exact path="/result" element={<Result />} />

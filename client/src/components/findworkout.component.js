@@ -1,7 +1,6 @@
-import React, { Component, useState } from 'react';
+import React, { Component } from 'react';
 import axios from 'axios';
 import "./Exercisedatabase.css"
-import Collapsible from './Collapsible';
 
 export default class Findworkout extends Component {
 
@@ -98,7 +97,8 @@ export default class Findworkout extends Component {
     render() {
 
         let content
-        if (this.state.exercises == []) {
+        if (this.state.exercises ===
+            []) {
             content = <h3></h3>
         }
         else {

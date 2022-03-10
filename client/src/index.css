@@ -23,6 +23,7 @@ body {
 }
 
 .form-group input {
+  height: auto;
   padding: 10px 20px;
   border: none;
   border-bottom: 3px solid transparent;

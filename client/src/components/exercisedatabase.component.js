@@ -1,5 +1,4 @@
-import React, { Component, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { Component } from 'react';
 import axios from 'axios';
 import Collapsible from './Collapsible';
 //import SearchBar from './SearchBar';
@@ -39,7 +38,7 @@ export default class exercisedatabase extends Component {
         const halfSec = 10;
         let exerciseSearchTest = []
         setInterval(() => {
-            if (this.state.search.length > 0 && this.state.search != this.state.searchCompare) {
+            if (this.state.search.length > 0 && this.state.search !== this.state.searchCompare) {
                 this.state.exercises.forEach(exercise => {
                     let similarity = stringSimilarity.compareTwoStrings(this.state.search.toLowerCase(), exercise.exerciseName.toLowerCase())
                     console.log(similarity)
@@ -182,7 +181,7 @@ export default class exercisedatabase extends Component {
 
     render() {
         let content
-        if (this.state.exercises == []) {
+        if (this.state.exercises === []) {
             content = <h3></h3>
         }
         else if (this.state.exercises.length > 0 && this.state.exerciseSearch.length > 0) {

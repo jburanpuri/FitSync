@@ -1,14 +1,11 @@
-import axios from 'axios';
-import React, { Component, useState } from 'react';
-import { useForm, Controller } from 'react-hook-form'
+import React, { useState } from 'react';
+import { useForm } from 'react-hook-form'
 
 
 import {
     InputGroup,
     InputGroupText,
     InputGroupAddon,
-    FormInput,
-    FormSelect,
     Container,
     Row,
     Col,
@@ -25,10 +22,10 @@ function Createworkoutform({ formData = {
             sets: '',
             repetitions: ''
         },],
-    uid: 'Sample Id',
+    uid: '',
 }, },) {
 
-    const { register, errors, handleSubmit } = useForm({
+    const { register, handleSubmit } = useForm({
         mode: 'all',
         reValidateMode: "all",
         defaultValues: formData,
@@ -81,34 +78,39 @@ function Createworkoutform({ formData = {
             <form onSubmit={handleSubmit(onSubmit)}>
                 <InputGroup className="mb-2">
                     <InputGroupAddon type="prepend">
-                        <InputGroupText>Workout Name</InputGroupText>
-                        <div>
+                        <br></br><br></br>
+                        <center><h4>
                             Workout Name
-                        </div>
+                        </h4></center>
                     </InputGroupAddon>
                     <input placeholder="Name of Workout" {...register('workoutName', { required: true })} />
                 </InputGroup>
+                <br></br>
                 <InputGroup className="mb-2">
                     <InputGroupAddon type="prepend">
-
-                        <div>
+                        <center><h4>
                             Unique Workout ID
-                        </div>
+                        </h4></center>
+
                     </InputGroupAddon>
-                    <input placeholder="ID" {...register('uid', { required: true })} />
+                    <input placeholder="Workout ID" {...register('uid', { required: true })} />
                 </InputGroup>
+                <br></br>
                 <Container>
-                    <div>
-                        Exercises
-                    </div>
+                    <center><h4>
+                        Exercise Details
+                    </h4></center>
+
                     {exerciseIDs.map((index) => (
                         <Row key={index}>
                             <Col>
                                 <input placeholder="Name of Exercise" {...register(`exercises.${index}.name`, { required: true })} />
                             </Col>
+                            <br></br>
                             <Col>
                                 <input placeholder="Number of Sets" {...register(`exercises.${index}.sets`, { required: true })} />
                             </Col>
+                            <br></br>
                             <Col>
                                 <input placeholder="Number of Repetitions" {...register(`exercises.${index}.repetitions`, { required: true })} />
                             </Col>
